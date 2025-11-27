@@ -1,0 +1,24 @@
+﻿@page
+@model ex.Pages.IndexModel
+
+<h1>Главная страница</h1>
+<h2>Роль: @Model.UserRole</h2>
+
+@if (Model.UserRole == "Guest")
+{
+    <p>👋 Вы вошли как гость</p>
+}
+else if (Model.UserRole == "User")  
+{
+    <p>✅ Вы обычный пользователь</p>
+}
+else if (Model.UserRole == "Manager")
+{
+    <p>📊 Вы менеджер</p>
+}
+else if (Model.UserRole == "Admin")
+{
+    <p>⚡ Вы админ</p>
+}
+
+<a href="/Login">Выйти и зайти под другой ролью</a>

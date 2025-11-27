@@ -1,0 +1,16 @@
+@page
+@model ex.Pages.LoginPageModel
+
+<h1>Вход</h1>
+
+<form method="post" asp-page-handler="Login">
+    <input type="text" name="username" placeholder="Логин">
+    <input type="password" name="password" placeholder="Пароль">
+    <button type="submit">Войти</button>
+</form>
+
+<form method="post" asp-page-handler="Guest">
+    <button type="submit">Войти как Гость</button>
+</form>
+
+<p>Тестовые: user/1, manager/1, admin/1</p>

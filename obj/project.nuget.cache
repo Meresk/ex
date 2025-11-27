@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "FaaT29XZUBM=",
+  "success": true,
+  "projectFilePath": "/home/meresk/develop/ex/ex.csproj",
+  "expectedPackageFiles": [
+    "/home/meresk/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.9/microsoft.aspnetcore.app.ref.9.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}
