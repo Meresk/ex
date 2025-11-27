@@ -43,7 +43,7 @@ public class LoginModel : PageModel
 
     public IActionResult OnGetLogout()
     {
-        HttpContext.Session.Remove("UserRole");
+        HttpContext.Session.Clear();
         return RedirectToPage("Index");
     }
 }
