@@ -40,4 +40,10 @@ public class LoginModel : PageModel
         HttpContext.Session.SetString("UserRole", "Guest");
         return RedirectToPage("Index");
     }
+
+    public IActionResult OnGetLogout()
+    {
+        HttpContext.Session.Remove("UserRole");
+        return RedirectToPage("Index");
+    }
 }
