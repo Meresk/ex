@@ -1,8 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSession();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer("Server=localhost,1433;Database=de1;User Id=sa;Password=YourPassword123!;TrustServerCertificate=true;"));
 
 var app = builder.Build();
 

@@ -8,17 +8,43 @@
 {
     <p>👋 Вы вошли как гость</p>
 }
-else if (Model.UserRole == "User")  
+else if (Model.UserRole == "Авторизированный клиент")  
 {
     <p>✅ Вы обычный пользователь</p>
 }
-else if (Model.UserRole == "Manager")
+else if (Model.UserRole == "Менеджер")
 {
     <p>📊 Вы менеджер</p>
 }
-else if (Model.UserRole == "Admin")
+else if (Model.UserRole == "Администратор")
 {
     <p>⚡ Вы админ</p>
+}
+
+@if (Model.UserRole == "Менеджер" || Model.UserRole == "Администратор")
+{
+    <!-- Простая форма -->
+    <form method="get">
+        <input type="text" name="Search" value="@Model.Search" placeholder="Поиск..." 
+            onchange="this.form.submit()">
+        
+        <select name="Sort" onchange="this.form.submit()">
+            <option value="">По названию</option>
+            <option value="price" selected="@(Model.Sort == "price")">По цене (дешевые)</option>
+            <option value="price_desc" selected="@(Model.Sort == "price_desc")">По цене (дорогие)</option>
+        </select>
+    </form>
+}
+
+<!-- Список продуктов -->
+@foreach (var product in Model.Products)
+{
+    <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+        <h3>@product.Title</h3>
+        <p>Цена: @product.Price руб.</p>
+        <p>Категория: @product.Category</p>
+        <p>@product.Description</p>
+    </div>
 }
 
 <a href="/Login">Выйти и зайти под другой ролью</a>

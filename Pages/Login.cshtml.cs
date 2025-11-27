@@ -1,20 +1,35 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace ex.Pages;
 
-public class LoginPageModel : PageModel
+public class LoginModel : PageModel
 {
+    private readonly AppDbContext _context;
+    
+    public LoginModel(AppDbContext context)
+    {
+        _context = context;
+    }
+
     public IActionResult OnPostLogin(string username, string password)
     {
         // типо запрос к БД
-        string role = "Guest";
-        if (username == "user" && password == "1") role = "User";
-        else if (username == "manager" && password == "1") role = "Manager";  
-        else if (username == "admin" && password == "1") role = "Admin";
+        var user = _context.Users
+            .FirstOrDefault(u => u.Login == username && u.Password == password);
+
+        if (user != null)
+        {
+            // Нашли пользователя - сохраняем роль
+            HttpContext.Session.SetString("UserRole", user.Role);
+            HttpContext.Session.SetString("UserName", user.FullName);
+            return RedirectToPage("Index");
+        }
         
         // Сохраняем роль в сессии если все ок
-        HttpContext.Session.SetString("UserRole", role);
+        HttpContext.Session.SetString("UserRole", user.Role);
         
         return RedirectToPage("Index");
     }
