@@ -39,13 +39,27 @@ else if (Model.UserRole == "Администратор")
 <!-- Список продуктов -->
 @foreach (var product in Model.Products)
 {
-    <div class="card" >
+    <!------------------------------ Главный контейнер карточка ------------------------------>
+    <!-- margin: внешний отступ между карточками-->
+    <div class="card" style="margin: 10px">
+
+        <!------------------------------ Контейнер для правильного расположения элементов ------------------------------>
+        <!-- diplay: flex: модуль который позволяет гибко управлять расположением элементов внутри себя-->
+        <!-- padding: внутренний отступ чтобы элементы внутри "отлипли" от границ главной карточки-->
         <div style="display: flex; padding: 20px;">
-            <div class="card" style="width: 500px; margin-right: 20px; display: flex; align-items: center;">
-                <img height="300" width="200" style=""/>
+
+            <!------------------------------ Контейнер с картинкой ------------------------------>
+            <!-- align-items: center: расположение картинки внутри каточки по-центру -->
+            <div class="card" style="width: 500px; display: flex; align-items: center;">
+                <img height="300" width="200"/>
             </div>
             
-            <div class="card" style="width: 100%; padding: 10px">
+            <!------------------------------ Контейнер с основной информацией ------------------------------>
+            <!-- width: 100%: ширина контейнера с главной информацией занимае все оставшееся пространтво между картинкой и скидкой -->
+            <!-- padding: внутренний отступ чтобы элементы внутри "отлипли" от границ карточки-->
+            <!-- margin-left: внешний левый отступ от контейнера с картинкой -->
+            <!-- margin-right: внешний правый отступ от контейнера со скидкой -->
+            <div class="card" style="width: 100%; padding: 10px; margin-left: 20px; margin-right: 20px;">
                 <h3>@product.Category | @product.Title</h3>
                 <p>Описание товара: @product.Description</p>
                 <p>Производитель: @product.Manufacturer</p>
@@ -55,8 +69,11 @@ else if (Model.UserRole == "Администратор")
                 <p>Колличество на складе: @product.Amount</p>
             </div>
 
-            <div class="card" style="width: 150px; margin-left: 20px">
-                <p>Действующая скида</p>
+            <!------------------------------ Контейнер со скидкой ------------------------------>
+            <!-- align-items и justify-content: center: выравнивание контейнера с тектом внутри по центру-->
+            <div class="card" style="display: flex; justify-content: center; align-items: center; padding: 10px">
+                <!-- text-align: center: выравнивание текста внутри по центру (как в ворде) -->
+                <div style="text-align: center">Действующая скидка: @product.Discount%</div>
             </div>
         </div>
     </div>
