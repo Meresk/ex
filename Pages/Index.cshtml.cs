@@ -25,10 +25,10 @@ public class IndexModel : PageModel
     {
         UserRole = HttpContext.Session.GetString("UserRole");
 
-        // if (string.IsNullOrEmpty(UserRole))
-        // {
-        //     return RedirectToPage("Login");
-        // }
+        if (string.IsNullOrEmpty(UserRole))
+        {
+            return RedirectToPage("Login");
+        }
 
         Products = _context.Products.ToList();
 
