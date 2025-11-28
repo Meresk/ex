@@ -39,11 +39,26 @@ else if (Model.UserRole == "Администратор")
 <!-- Список продуктов -->
 @foreach (var product in Model.Products)
 {
-    <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
-        <h3>@product.Title</h3>
-        <p>Цена: @product.Price руб.</p>
-        <p>Категория: @product.Category</p>
-        <p>@product.Description</p>
+    <div class="card" >
+        <div style="display: flex; padding: 20px;">
+            <div class="card" style="width: 500px; margin-right: 20px; display: flex; align-items: center;">
+                <img height="300" width="200" style=""/>
+            </div>
+            
+            <div class="card" style="width: 100%; padding: 10px">
+                <h3>@product.Category | @product.Title</h3>
+                <p>Описание товара: @product.Description</p>
+                <p>Производитель: @product.Manufacturer</p>
+                <p>Поставщик: @product.Producer</p>
+                <p>Цена: @product.Price руб.</p>
+                <p>Единица измерения: @product.Unit</p>
+                <p>Колличество на складе: @product.Amount</p>
+            </div>
+
+            <div class="card" style="width: 150px; margin-left: 20px">
+                <p>Действующая скида</p>
+            </div>
+        </div>
     </div>
 }
 
